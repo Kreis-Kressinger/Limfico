@@ -21,6 +21,8 @@ int main(int argc, char *argv[]){
 			key = &argv[i+1][0];
 		}
 	}
+
+
 	
 	
 	
