@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 
 	if(mode == 0){
 		printf("Enter mode: ");
-		scanf("%d", mode);
+		scanf("%d", &mode);
 	}
 	if(input == NULL){
 		printf("Enter input: ");
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
 
 	if(confirmflag == 0){
 		printf("Mode: %d\nInput: %s\nOutput: %s\nKey: %s\nConfirm?(y/N): ", mode, input, output, key);
-		scanf("%c", confirmopt);
+		scanf("%c", &confirmopt);
 	}
 
 	if(confirmopt == 'y' || confirmopt == 'Y'){

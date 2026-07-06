@@ -1,11 +1,13 @@
 CC = gcc
 CFLAGS = -O2 -Wall
-SRCS = .\src\main.c
-HEADER = .\include
+SRCS = ./src/main.c
+HEADERS = ./include
 TARGET = Limfico
 
-Limfico: 
-	$(CC) -o $(TARGET) $(SRCS) -I $(HEADER) $(CFLAGS)
+all: $(TARGET)
+
+$(TARGET): $(SRCS) $(HEADERS)
+	$(CC) -o $(TARGET) $(CFLAGS) $(SRCS) -I $(HEADERS) 
 
 clean:
-	rm $(TARGET).exe
+	rm -f $(TARGET).exe $(TARGET)
