@@ -22,9 +22,9 @@
 #include "encrypt.h"
 
 int main(int argc, char *argv[]){	
-	int mode = 0; // 0 = uninitialized, 1 = encrypt out of file, 2 = encrypt out of command line
+	int8_t mode = 0; // 0 = uninitialized, 1 = encrypt out of file, 2 = encrypt out of command line
 		      // 3 = decrypt out of file, 4 = decrypt out of command line
-	int confirmflag = 0; // 0 = yes, 1 = no
+	int8_t confirmflag = 0; // 0 = yes, 1 = no
 	char confirmopt = 'n'; // (y/N) 
 	char input[256] = ""; // name of input / input string
 	char output[256] = ""; // name of output 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
 	}
 
 	if(confirmflag == 0){
-		printf("Mode: %d\nInput: %s\nOutput: %s\nKey: %s\nConfirm?(y/N): ", mode, input, output, key);
+		printf("\n**********\nMode: %d\nInput: %s\nOutput: %s\nKey: %s\n**********\nConfirm?(y/N): ", mode, input, output, key);
 		scanf("%c", &confirmopt);
 		getchar();
 	}
@@ -79,19 +79,19 @@ int main(int argc, char *argv[]){
 	if(confirmopt == 'y' || confirmopt == 'Y'){
 		switch(mode){
 			case 1:
-				exit(mode1());
+				exit(mode1(input, output, key));
 				break;
 			
 			case 2: 
-				exit(mode2());
+				exit(mode2(output, key));
 				break;
 
 			case 3: 
-				exit(mode3());
+				exit(mode3(input, output, key));
 				break;
 
 			case 4: 
-				exit(mode4());
+				exit(mode4(output, key));
 				break;
 		}
 	}

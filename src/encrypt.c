@@ -3,17 +3,36 @@
 // 3 = decrypt out of file
 // 4 = decrypt out of command line
 
-int mode1(char *input, char *output, char *key){
+
+char* encrypt(char *contentbuffer, char *keybuffer){
+	char result[256] = "";
+		
 
 
-
-
-return 0;
+	
+	return result;
 }
 
 
-
-int mode2(char *output, char *key){}
-int mode3(char *input, char *output, char *key){}
-int mode4(char *output, char *key){}
-
+int mode1(char *input, char *output, char *key){
+	FILE *inputfile = fopen(input, "r");
+	FILE *keyfile = fopen(key, "r");
+	FILE *outputfile = fopen(output, "w");
+	
+	
+	
+	
+	fclose(outputfile);
+	fclose(keyfile);
+	fclose(inputfile);
+	return 0;
+}
+int mode2(char *output, char *key){
+return 0;
+}
+int mode3(char *input, char *output, char *key){
+return 0;
+}
+int mode4(char *output, char *key){
+return 0;
+}
