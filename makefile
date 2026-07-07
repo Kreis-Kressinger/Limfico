@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -O2 -Wall
-SRCS = ./src/main.c
+SRCS = ./src/main.c ./src/encrypt.c
 HEADERS = ./include
 TARGET = Limfico
 
