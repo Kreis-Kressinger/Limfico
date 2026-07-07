@@ -1,4 +1,23 @@
+/*
+ *	Copyright (C) 2026  Kreis Kressinger
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "encrypt.h"
 
@@ -35,7 +54,7 @@ int main(int argc, char *argv[]){
 		scanf("%d", &mode);
 		getchar();
 	}
-	if(input[0] == '\0'){
+	if( (input[0] == '\0' && mode == 1) || (input[0] == '\0' && mode == 3) ){
 		printf("Enter input: ");
 		scanf("%255s", input);
 		getchar();
@@ -58,7 +77,23 @@ int main(int argc, char *argv[]){
 	}
 
 	if(confirmopt == 'y' || confirmopt == 'Y'){
-		return encrypt(mode, input, output, key);
+		switch(mode){
+			case 1:
+				exit(mode1());
+				break;
+			
+			case 2: 
+				exit(mode2());
+				break;
+
+			case 3: 
+				exit(mode3());
+				break;
+
+			case 4: 
+				exit(mode4());
+				break;
+		}
 	}
 	
 	return 0;
