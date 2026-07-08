@@ -33,7 +33,7 @@ flag list:
 - `-i (name of the input file)`
 - `-o (name of the output file)` If the output file doesn't exist, the program will create one for you
 - `-k (name of the key file)`
-- `-c` *(completely optional.)* Limfico will display all the parameters before beginning its processing. Using `-c` will skip this.
+- `-c` *(completely optional.)* Limfico will skip the confirmation step.
 
 examples (on Windows):
 
