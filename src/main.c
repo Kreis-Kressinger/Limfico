@@ -30,24 +30,24 @@ int main(int argc, char *argv[]){
 	char key[256] = ""; // name of key
 	
 
-	for(int i = 1; i < argc && argv[i+1] != NULL; i++){
-		if(argv[i][0] == '-' && argv[i][1] == 'm' && argv[i][2] == '\0'){
+	for(int i = 1; i < argc; i++){
+		if(argv[i][0] == '-' && argv[i][1] == 'm' && argv[i][2] == '\0' && argv[i+1] != NULL){
 			mode = argv[i+1][0] - '0';
 		}
-		if(argv[i][0] == '-' && argv[i][1] == 'i' && argv[i][2] == '\0'){
+		if(argv[i][0] == '-' && argv[i][1] == 'i' && argv[i][2] == '\0' && argv[i+1] != NULL){
 			strcpy(input, argv[i+1]);
 		}
-		if(argv[i][0] == '-' && argv[i][1] == 'o' && argv[i][2] == '\0'){
+		if(argv[i][0] == '-' && argv[i][1] == 'o' && argv[i][2] == '\0' && argv[i+1] != NULL){
 			strcpy(output, argv[i+1]);
 		}
-		if(argv[i][0] == '-' && argv[i][1] == 'k' && argv[i][2] == '\0'){
+		if(argv[i][0] == '-' && argv[i][1] == 'k' && argv[i][2] == '\0' && argv[i+1] != NULL){
 			strcpy(key, argv[i+1]);
+		}
+		if(argv[i][0] == '-' && argv[i][1] == 'c' && argv[i][2] == '\0'){
+			confirmflag = 1;
 		}
 	}
 
-	if(argv[i][0] == '-' && argv[i][1] == 'c' && argv[i][2] == '\0'){
-		confirmflag = 1;
-	}
 	
 	if(mode == 0){
 		printf("Enter mode: ");
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
 		getchar();
 	}
 
-	if(confirmflag == 1){
+	if(confirmflag != 1){
 		printf("\nInput: %s\nOutput: %s\nKey: %s\n**********\nConfirm?(y/N): ", input, output, key);
 		scanf("%c", &confirmopt);
 		getchar();
