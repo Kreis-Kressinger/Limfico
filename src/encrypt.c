@@ -10,27 +10,38 @@
 
 #define MAX_STR_LENGTH 8192
 
-void encrypt(wchar_t inputbuffer, wchar_t keybuffer, wchar_t* result){	
-	static wchar_t lastchar = 'a';
-	*result = lastchar = (inputbuffer ^ keybuffer) ^ lastchar;	
+void encrypt(unsigned char input, unsigned char key, unsigned char *result){
+    static unsigned char lastchar = 'a';
+    *result = (input ^ key) ^ lastchar;
+    lastchar = input;
 }
 
+void decrypt(unsigned char input, unsigned char key, unsigned char *result){
+    static unsigned char lastchar = 'a';
+    *result = (input ^ key) ^ lastchar;
+    lastchar = *result;
+}
 
 int mode1(char *input, char *output, char *key){
 	FILE *inputfile = fopen(input, "rb");
 	FILE *keyfile = fopen(key, "rb");
 	FILE *outputfile = fopen(output, "wb");
-	wint_t inputbuffer, keybuffer; 
-	wchar_t result;
 
-	while((inputbuffer = fgetwc(inputfile)) != WEOF){
-		
-		if ((keybuffer = fgetwc(keyfile)) == WEOF) {
-            		fseek(keyfile, 0, SEEK_SET);
-           		 keybuffer = fgetwc(keyfile);
-        	}		
-		encrypt((wchar_t)inputbuffer, (wchar_t)keybuffer, &result);
-		fputwc(result, outputfile);
+	if (!inputfile || !keyfile || !outputfile){
+    		return -1;
+	}
+
+	unsigned char inputbuffer, keybuffer, result;
+
+	while (fread(&inputbuffer, 1, 1, inputfile) == 1) {
+
+    		if (fread(&keybuffer, 1, 1, keyfile) != 1) {
+        		fseek(keyfile, 0, SEEK_SET);
+        		fread(&keybuffer, 1, 1, keyfile);
+    		}
+
+    		encrypt(inputbuffer, keybuffer, &result);
+    		fwrite(&result, 1, 1, outputfile);
 	}
 	
 	fclose(outputfile);
@@ -38,28 +49,33 @@ int mode1(char *input, char *output, char *key){
 	fclose(inputfile);
 	return 0;
 }
-int mode2(char *output, char *key){
-	wchar_t str[MAX_STR_LENGTH] =  { '\0' };
+
+int mode2(char *input, char *output, char *key){
+	FILE *inputfile = fopen(input, "rb");
 	FILE *keyfile = fopen(key, "rb");
 	FILE *outputfile = fopen(output, "wb");
-	wchar_t keybuffer, result;	
-	
-	printf("Enter string: ");
-	fwscanf(stdin, L"%s", str);
-	
-	for(int i = 0; !(str[i] == '\0'); i++){
-			
-		if ((keybuffer = fgetwc(keyfile)) == WEOF) {
-			fseek(keyfile, 0, SEEK_SET);
-           		keybuffer = fgetwc(keyfile);
-        	}
-		
-		encrypt(str[i], keybuffer, &result);
-		fputwc(result, outputfile);		
+
+	if (!inputfile || !keyfile || !outputfile){
+    		return -1;
 	}
 
-	fclose(keyfile);
+	unsigned char inputbuffer, keybuffer, result;
+
+	while (fread(&inputbuffer, 1, 1, inputfile) == 1) {
+
+    		if (fread(&keybuffer, 1, 1, keyfile) != 1) {
+        		fseek(keyfile, 0, SEEK_SET);
+        		fread(&keybuffer, 1, 1, keyfile);
+    		}
+
+    		decrypt(inputbuffer, keybuffer, &result);
+    		fwrite(&result, 1, 1, outputfile);
+	}
+	
 	fclose(outputfile);
+	fclose(keyfile);
+	fclose(inputfile);
 	return 0;
 }
+
 

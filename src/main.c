@@ -24,7 +24,7 @@
 int main(int argc, char *argv[]){	 
 	int mode = 0;
 	int confirmflag = 0; // 0 = yes, 1 = no
-	char confirmopt = 'n'; // (y/N) 
+	char confirmopt = 'y'; 
 	char input[256] = ""; // name of input / input string
 	char output[256] = ""; // name of output 
 	char key[256] = ""; // name of key
@@ -43,17 +43,19 @@ int main(int argc, char *argv[]){
 		if(argv[i][0] == '-' && argv[i][1] == 'k' && argv[i][2] == '\0'){
 			strcpy(key, argv[i+1]);
 		}
-		if(argv[i][0] == '-' && argv[i][1] == 'c' && argv[i][2] == '\0'){
-			confirmflag = 1;
-		}
 	}
 
-	if(mode == '0'){
+	if(argv[i][0] == '-' && argv[i][1] == 'c' && argv[i][2] == '\0'){
+		confirmflag = 1;
+	}
+	
+	if(mode == 0){
 		printf("Enter mode: ");
 		scanf("%d", &mode);
 		getchar();
 	}
-	if( (input[0] == '\0' && mode == 1) || (input[0] == '\0' && mode == 3) ){
+	
+	if(input[0] == '\0'){
 		printf("Enter input: ");
 		scanf("%255s", input);
 		getchar();
@@ -69,22 +71,17 @@ int main(int argc, char *argv[]){
 		getchar();
 	}
 
-	if(confirmflag == 0){
-		printf("\n**********\nMode: %d\nInput: %s\nOutput: %s\nKey: %s\n**********\nConfirm?(y/N): ", mode, input, output, key);
+	if(confirmflag == 1){
+		printf("\nInput: %s\nOutput: %s\nKey: %s\n**********\nConfirm?(y/N): ", input, output, key);
 		scanf("%c", &confirmopt);
 		getchar();
+	} else{
+		confirmopt = 'y';
 	}
 
 	if(confirmopt == 'y' || confirmopt == 'Y'){
-		switch(mode){
-			case 1:
-				exit(mode1(input, output, key));
-				break;
-			
-			case 2: 
-				exit(mode2(output, key));
-				break;
-		}
+		if(mode == 1) exit(mode1(input, output, key));
+		if(mode == 2) exit(mode2(input, output, key));	
 	}
 	
 	return 0;
