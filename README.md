@@ -5,7 +5,7 @@
 
 ### What is Limfico?:
 
-Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. TThe key should be generated randomly and kept secret. Longer keys are generally provide more secure.
+Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. The key should be generated randomly and kept secret. Longer keys are generally more secure.
 Limfico is lightweight and should run very quickly to encrypt/decrypt even large files.
 
 ### Installing Limfico:
@@ -25,7 +25,8 @@ You either use Limfico with its "menu" (if you can even call it that), or using 
 
 ## Command line:
 
-`.\Limfico.exe (flags)`
+- Windows: `.\Limfico.exe (flags)`
+- Linux/Mac: `./Limfico (flags)`
 
 flag list:
 - `-m (mode)` Mode can be either 1(encrypt) or 2(decrypt)
@@ -40,8 +41,8 @@ examples (on Windows):
 `./Limfico.exe -m 2 -i encrypted.txt -o nolongersecret.txt -k key.bin` - decrypt `encrypted.txt` with `key.txt` into `nolongersecret.txt`  
 `./Limfico.exe -m 1 -i secret.txt -o encrypted.txt -k key.bin -c` same as the 1st command, but skipping the confirmation step using `-c`
 
-On Linux, you only need to change `.\Limfico.exe` to `.\Limfico`.
+On Linux, you only need to change `.\Limfico.exe` to `./Limfico`.
 
 ## Limfico Menu:
 
-If you do not enter any flags, or only some, then Limfico will ask you for the parameters, so don't worry about forgetting a flag!
+If you do not enter any flags, or only some, then Limfico will ask you for the missing parameters, so don't worry about forgetting a flag!
