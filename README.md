@@ -1,14 +1,19 @@
 # Limfico Guide
-- Windows
-- Linux
-- (macOS: not tested)
+
 
 ### What is Limfico?:
+*NOTE: that Limfico is NOT supposed to be taken seriously as a cryptographically secure encryption, and should not be used to encrypt ANY confidential data.*
+
 
 Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. The key should be generated randomly and kept secret. Longer keys are generally more secure.
 Limfico is lightweight and should run very quickly to encrypt/decrypt even large files.
 
 ### Installing Limfico:
+supported platforms:
+- Windows
+- Linux
+- (macOS: likely, but not tested)
+
 prerequisites: gcc, make
 1. Clone the repo using ssh or https: 
 - https: `git clone https://github.com/Kreis-Kressinger/Limfico.git`  
