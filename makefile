@@ -1,13 +1,19 @@
 CC = gcc
 CFLAGS = -O2 -Wall
-SRCS = ./src/main.c ./src/encrypt.c
+1SRCS = ./src/Limfico.c ./src/encrypt.c
 HEADERS = ./include
-TARGET = Limfico
+1TARGET = Limfico
+2TARGET = Limkey
+2SRCS = ./src/Limkey.c
 
-all: $(TARGET)
+all: $(1TARGET) $(2TARGET)
 
-$(TARGET): $(SRCS) $(HEADERS)
-	$(CC) -o $(TARGET) $(CFLAGS) $(SRCS) -I $(HEADERS) 
+$(1TARGET): $(1SRCS) $(1HEADERS)
+	$(CC) -o $(1TARGET) $(CFLAGS) $(1SRCS) -I $(HEADERS) 
+
+$(2TARGET):  $(2SRCS) $(2HEADERS)
+	$(CC) -o $(2TARGET) $(CFLAGS) $(2SRCS) -I $(HEADERS) 
 
 clean:
-	rm -f $(TARGET).exe $(TARGET)
+	rm -f $(1TARGET).exe $(1TARGET)
+	rm -f $(2TARGET).exe $(2TARGET)
