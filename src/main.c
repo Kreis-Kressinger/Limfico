@@ -22,9 +22,9 @@
 #include "encrypt.h"
 
 int main(int argc, char *argv[]){	
-	int8_t mode = 0; // 0 = uninitialized, 1 = encrypt out of file, 2 = encrypt out of command line
+	int mode = 0; // 0 = uninitialized, 1 = encrypt out of file, 2 = encrypt out of command line
 		      // 3 = decrypt out of file, 4 = decrypt out of command line
-	int8_t confirmflag = 0; // 0 = yes, 1 = no
+	int confirmflag = 0; // 0 = yes, 1 = no
 	char confirmopt = 'n'; // (y/N) 
 	char input[256] = ""; // name of input / input string
 	char output[256] = ""; // name of output 
