@@ -10,7 +10,7 @@
 
 void encrypt(wchar_t inputbuffer, wchar_t keybuffer, wchar_t* result){	
 	static wchar_t lastchar = 'a';
-	*result = lastchar = (inputbuffer ^ lastchar) ^ keybuffer;	
+	*result = lastchar = (inputbuffer ^ keybuffer) ^ lastchar;	
 }
 
 
@@ -27,7 +27,7 @@ int mode1(char *input, char *output, char *key){
 		keybuffer = fgetwc(keyfile);
 		inputbuffer = fgetwc(inputfile);
 		encrypt(inputbuffer, keybuffer, &result);
-		fputws(&result, outputfile);
+		fputwc(result, outputfile);
 	}
 	
 	fclose(outputfile);
