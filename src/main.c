@@ -21,9 +21,8 @@
 #include <string.h>
 #include "encrypt.h"
 
-int main(int argc, char *argv[]){	
-	int mode = 0; // 0 = uninitialized, 1 = encrypt out of file, 2 = encrypt out of command line
-		      // 3 = decrypt out of file, 4 = decrypt out of command line
+int main(int argc, char *argv[]){	 
+	int mode = 0;
 	int confirmflag = 0; // 0 = yes, 1 = no
 	char confirmopt = 'n'; // (y/N) 
 	char input[256] = ""; // name of input / input string
@@ -49,7 +48,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 
-	if(mode == 0){
+	if(mode == '0'){
 		printf("Enter mode: ");
 		scanf("%d", &mode);
 		getchar();
@@ -84,14 +83,6 @@ int main(int argc, char *argv[]){
 			
 			case 2: 
 				exit(mode2(output, key));
-				break;
-
-			case 3: 
-				exit(mode3(input, output, key));
-				break;
-
-			case 4: 
-				exit(mode4(output, key));
 				break;
 		}
 	}

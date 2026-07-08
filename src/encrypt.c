@@ -8,6 +8,8 @@
 #include <string.h>
 #include <wchar.h>
 
+#define MAX_STR_LENGTH 8192
+
 void encrypt(wchar_t inputbuffer, wchar_t keybuffer, wchar_t* result){	
 	static wchar_t lastchar = 'a';
 	*result = lastchar = (inputbuffer ^ keybuffer) ^ lastchar;	
@@ -15,18 +17,19 @@ void encrypt(wchar_t inputbuffer, wchar_t keybuffer, wchar_t* result){
 
 
 int mode1(char *input, char *output, char *key){
-	FILE *inputfile = fopen(input, "r");
-	FILE *keyfile = fopen(key, "r");
-	FILE *outputfile = fopen(output, "w");
-	wchar_t inputbuffer, keybuffer, result;
+	FILE *inputfile = fopen(input, "rb");
+	FILE *keyfile = fopen(key, "rb");
+	FILE *outputfile = fopen(output, "wb");
+	wint_t inputbuffer, keybuffer; 
+	wchar_t result;
 
-	while(!feof(inputfile)){
-		if(feof(keyfile)){
-			fseek(keyfile, 0, SEEK_SET);
-		}
-		keybuffer = fgetwc(keyfile);
-		inputbuffer = fgetwc(inputfile);
-		encrypt(inputbuffer, keybuffer, &result);
+	while((inputbuffer = fgetwc(inputfile)) != WEOF){
+		
+		if ((keybuffer = fgetwc(keyfile)) == WEOF) {
+            		fseek(keyfile, 0, SEEK_SET);
+           		 keybuffer = fgetwc(keyfile);
+        	}		
+		encrypt((wchar_t)inputbuffer, (wchar_t)keybuffer, &result);
 		fputwc(result, outputfile);
 	}
 	
@@ -36,11 +39,27 @@ int mode1(char *input, char *output, char *key){
 	return 0;
 }
 int mode2(char *output, char *key){
-return 0;
+	wchar_t str[MAX_STR_LENGTH] =  { '\0' };
+	FILE *keyfile = fopen(key, "rb");
+	FILE *outputfile = fopen(output, "wb");
+	wchar_t keybuffer, result;	
+	
+	printf("Enter string: ");
+	fwscanf(stdin, L"%s", str);
+	
+	for(int i = 0; !(str[i] == '\0'); i++){
+			
+		if ((keybuffer = fgetwc(keyfile)) == WEOF) {
+			fseek(keyfile, 0, SEEK_SET);
+           		keybuffer = fgetwc(keyfile);
+        	}
+		
+		encrypt(str[i], keybuffer, &result);
+		fputwc(result, outputfile);		
+	}
+
+	fclose(keyfile);
+	fclose(outputfile);
+	return 0;
 }
-int mode3(char *input, char *output, char *key){
-return 0;
-}
-int mode4(char *output, char *key){
-return 0;
-}
+
