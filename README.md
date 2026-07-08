@@ -43,10 +43,12 @@ flag list:
 examples (on Windows):
 
 `.\Limfico.exe -m 1 -i secret.txt -o encrypted.txt -k key.bin`: This encrypts `secret.txt` with `key.txt` into `encrypted.txt`.
+
 `.\Limfico.exe -m 2 -i encrypted.txt -o nolongersecret.txt -k key.bin`: This decrypts `encrypted.txt` with `key.txt` into `nolongersecret.txt`.
+
 `.\Limfico.exe -m 1 -i secret.txt -o encrypted.txt -k key.bin -c`: Same as the 1st command, but skipping the confirmation step using `-c`.
 
-On Linux, you only need to change `.\Limfico.exe` to `./Limfico`.
+On Linux, you only need to change `.\Limfico.exe` to `./Limfico` for it to function the same way.
 
 ## Limfico Menu:
 
