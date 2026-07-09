@@ -1,7 +1,7 @@
 # Limfico/Limkey Guide
 
 
-### What is Limfico/Limkey?:
+## What is Limfico/Limkey?:
 *NOTE: that Limfico/Limkey is NOT supposed to be taken seriously as a cryptographically secure encryption, and should not be used to encrypt ANY confidential data.*
 
 

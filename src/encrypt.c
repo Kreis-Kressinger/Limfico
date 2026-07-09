@@ -8,7 +8,6 @@
 #include <string.h>
 #include <wchar.h>
 
-#define MAX_STR_LENGTH 8192
 
 void encrypt(unsigned char input, unsigned char key, unsigned char *result){
     static unsigned char lastchar = 'a';
@@ -28,7 +27,7 @@ int mode1(char *input, char *output, char *key){
 	FILE *outputfile = fopen(output, "wb");
 
 	if (!inputfile || !keyfile || !outputfile){
-    		return -1;
+    		return 1;
 	}
 
 	unsigned char inputbuffer, keybuffer, result;
@@ -56,7 +55,7 @@ int mode2(char *input, char *output, char *key){
 	FILE *outputfile = fopen(output, "wb");
 
 	if (!inputfile || !keyfile || !outputfile){
-    		return -1;
+    		return 1;
 	}
 
 	unsigned char inputbuffer, keybuffer, result;
