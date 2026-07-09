@@ -26,7 +26,7 @@ prerequisites: gcc, make
 
 *Optional:* Put Limfico/Limkey in your PATH, so you can access it anywhere.
 
-If you only want to compile Limfico or Limkey without the other, then you can by entering `make Limfico` and `make Limkey`
+If you only want to compile Limfico or Limkey without the other, then you can by entering `make Limfico` and `make Limkey` for each respectively.
 
 ## Using Limfico:
 Type the command:
