@@ -5,7 +5,7 @@
 *NOTE: that Limfico/Limkey is NOT supposed to be taken seriously as a cryptographically secure encryption, and should not be used to encrypt ANY confidential data.*
 
 
-Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. The key should be generated randomly and kept secret. Longer keys are generally more secure.
+Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. The key should be generated randomly (using Limkey for example) and kept secret. Longer keys are generally more secure.
 Limfico is lightweight and should run very quickly to encrypt/decrypt even large files.
 
 Limfico also comes bundled together with Limkey, a command line utility that can generate keys for Limfico.
