@@ -1,7 +1,5 @@
-// 1 = encrypt out of file
-// 2 = encrypt out of command line
-// 3 = decrypt out of file
-// 4 = decrypt out of command line
+// 1 = encrypt
+// 2 = decrypt
 
 
 #include <stdio.h>
