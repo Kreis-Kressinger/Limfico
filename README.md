@@ -1,14 +1,16 @@
-# Limfico Guide
+# Limfico/Limkey Guide
 
 
-### What is Limfico?:
-*NOTE: that Limfico is NOT supposed to be taken seriously as a cryptographically secure encryption, and should not be used to encrypt ANY confidential data.*
+### What is Limfico/Limkey?:
+*NOTE: that Limfico/Limkey is NOT supposed to be taken seriously as a cryptographically secure encryption, and should not be used to encrypt ANY confidential data.*
 
 
 Limfico is a small command line utility that can encrypt files using a key with a XOR algorithm. The key should be generated randomly and kept secret. Longer keys are generally more secure.
 Limfico is lightweight and should run very quickly to encrypt/decrypt even large files.
 
-### Installing Limfico:
+Limfico also comes bundled together with Limkey, a command line utility that can generate keys for Limfico.
+
+### Installing Limfico and Limkey:
 supported platforms:
 - Windows
 - Linux
@@ -22,14 +24,10 @@ prerequisites: gcc, make
 2. simply run `make` in it's directory/folder
 3. That's all!
 
-*Optional:* Put Limfico in your PATH, so you can access it anywhere.
+*Optional:* Put Limfico/Limkey in your PATH, so you can access it anywhere.
 
-### Using Limfico:
-
-You either use Limfico with its "menu" (if you can even call it that), or using the command line.
-
-## Command line:
-
+## Using Limfico:
+Type the command:
 - Windows: `.\Limfico.exe (flags)`
 - Linux/Mac: `./Limfico (flags)`
 
@@ -48,8 +46,21 @@ examples (on Windows):
 
 `.\Limfico.exe -m 1 -i secret.txt -o encrypted.txt -k key.bin -c`: Same as the 1st command, but skipping the confirmation step using `-c`.
 
+
 On Linux, you only need to change `.\Limfico.exe` to `./Limfico` for it to function the same way.
+And if you put Limfico in your PATH, then you are able to call it anywhere with just the command: `Limfico (flags)` and it will work in the current directory you are in!
 
-## Limfico Menu:
+## Using Limkey
 
-If you do not enter any flags, or only some, then Limfico will ask you for the missing parameters, so don't worry about forgetting a flag!
+Type the command:
+- Windows: `.\Limkey.exe (key length)`
+- Linux/Mac: `./Limkey (key length)`
+
+Limkey will then generate a key with your given key length. The key is named key(random letters).txt.
+
+Limkey supports the maximum key length of *18,446,744,073,709,551,615*.
+If you don't give it a key length, it will just close itself.
+
+Again, if you put Limkey in your PATH, then you are able to call it from anywhere just like: `Limkey (key length)` and it will store the key in the directory you are currently in.
+
+
