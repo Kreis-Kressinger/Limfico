@@ -62,10 +62,7 @@ Type the command:
 - Windows: `.\Limkey.exe {key length}`
 - Linux/Mac: `./Limkey {key length}`
 
-Limkey will then generate a key with your given key length. The key is named key(random letters).txt.
-Limkey supports a maximum key length of *18,446,744,073,709,551,615*. There aren't any flags for Limkey.
+Limkey will then generate a key with your given key length, with a maximum of 18,446,744,073,709,551,614. The key will be named `key(random letters).txt`. Limkey doesn't take any other parameters other than `{key length}`.
 If you don't give it a key length, it won't generate anything and just close itself.
-
-Again, if you put Limkey in your PATH, then you are able to call it from anywhere just like: `Limkey (key length)` and it will store the key in the directory you are currently in.
 
 
