@@ -26,10 +26,12 @@ prerequisites: gcc, make
 
 *Optional:* Put Limfico/Limkey in your PATH, so you can access it anywhere.
 
+(If you only want to compile Limfico or Limkey without the other, then you can by entering `make Limfico` and `make Limkey`)
+
 ## Using Limfico:
 Type the command:
-- Windows: `.\Limfico.exe (flags)`
-- Linux/Mac: `./Limfico (flags)`
+- Windows: `.\Limfico.exe (flags...)`
+- Linux/Mac: `./Limfico (flags...)`
 
 flag list:
 - `-m (mode)` Mode can be either 1(encrypt) or 2(decrypt)
@@ -53,8 +55,8 @@ And if you put Limfico in your PATH, then you are able to call it anywhere with 
 ## Using Limkey
 
 Type the command:
-- Windows: `.\Limkey.exe (key length)`
-- Linux/Mac: `./Limkey (key length)`
+- Windows: `.\Limkey.exe {key length}`
+- Linux/Mac: `./Limkey {key length}`
 
 Limkey will then generate a key with your given key length. The key is named key(random letters).txt.
 
