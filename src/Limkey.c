@@ -17,13 +17,13 @@ int main(int argc, char *argv[]){
 			while(placeholder < 65) placeholder += 5;
 			outputname[i] = (char) placeholder;		
 		}
-		unsigned char damn[4] = ".txt";
+		unsigned char damn[4] = ".bin";
 		memcpy(&outputname[24], damn, 4*sizeof(unsigned char));		
 		strcpy(userarg, argv[1]);
 		keylength = llabs(strtoll(userarg, NULL, 10));
 		
 		if(keylength <= 0){ 	
-			printf("Can't create a key with length '0'");
+			printf("Can't create a key with length '0'\n");
 			exit(1);
 		}	
 		FILE* output = fopen(outputname, "wb");
@@ -31,12 +31,12 @@ int main(int argc, char *argv[]){
 			unsigned char rnum = (unsigned char)(rand() % 255);
 			fwrite(&rnum, sizeof(unsigned char), 1, output);	
 		}
-		printf("Key with length [%llu] successfully created", keylength);
+		printf("Key with length [%llu] successfully created\n", keylength);
 		exit(0);	
 	}
 	
 		
-	printf("Invalid Argument");
+	printf("Invalid parameters\n");
 	
 return 1;
 }
