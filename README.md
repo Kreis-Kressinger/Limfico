@@ -32,6 +32,7 @@ If you only want to compile Limfico or Limkey without the other, then you can by
 Type the command in the directory it's located in:
 - Windows: `.\Limfico.exe (flags...)`
 - Linux/Mac: `./Limfico (flags...)`
+
 If it is in your PATH, then you can call it from anywhere like this:
 - All platforms: `Limfico (flags...)`
 
