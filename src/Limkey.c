@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 
 	char userarg[255];
 	char outputname[30]  = "key";
-	unsigned long long int keylength;
+	long long int keylength;
 	
 	
 	if(argv[1] != NULL){
@@ -50,10 +50,10 @@ int main(int argc, char *argv[]){
 		unsigned char damn[4] = ".bin";
 		memcpy(&outputname[24], damn, 4*sizeof(unsigned char));		
 		strcpy(userarg, argv[1]);
-		keylength = llabs(strtoll(userarg, NULL, 10));
+		keylength = strtoll(userarg, NULL, 10);
 		
 		if(keylength <= 0){ 	
-			printf("Can't create a key with length '0'\n");
+			printf("Invalid params: Can't create a key with length 0 or below\n");
 			exit(1);
 		}	
 		FILE* output = fopen(outputname, "wb");
@@ -74,5 +74,5 @@ int main(int argc, char *argv[]){
 		
 	printf("Invalid parameters\n");
 	
-return 1;
+return 2;
 }
