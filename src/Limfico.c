@@ -25,8 +25,8 @@ int main(int argc, char *argv[]){
 	int mode = 0;
 	int confirmflag = 0; // 0 = yes, 1 = no
 	char confirmopt = 'y'; 
-	char input[256] = ""; // name of input / input string
-	char output[256] = ""; // name of output 
+	char input[256] = ""; // name of input file
+	char output[256] = ""; // name of output file
 	char key[256] = ""; // name of key
 	
 
