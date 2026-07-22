@@ -1,19 +1,28 @@
 CC = gcc
 CFLAGS = -O2 -Wall -std=c99
-1SRCS = ./src/Limfico.c ./src/encrypt.c
-HEADERS = ./include
-1TARGET = Limfico
-2TARGET = Limkey
-2SRCS = ./src/Limkey.c
 
-all: $(1TARGET) $(2TARGET)
+LIMFICO_SRCS = ./src/Limfico.c ./src/encrypt.c
+LIMKEY_SRCS = ./src/Limkey.c
+HEADERS = ./include/Limfico
 
-$(1TARGET): $(1SRCS) $(1HEADERS)
-	$(CC) -o $(1TARGET) $(CFLAGS) $(1SRCS) -I $(HEADERS) 
+LIMFICO_TARGET = Limfico
+LIMKEY_TARGET = Limkey
 
-$(2TARGET):  $(2SRCS) $(2HEADERS)
-	$(CC) -o $(2TARGET) $(CFLAGS) $(2SRCS) -I $(HEADERS) 
+# Add Windows-specific libraries
+ifeq ($(OS),Windows_NT)
+    LDLIBS = -lbcrypt
+else
+    LDLIBS =
+endif
+
+all: $(LIMFICO_TARGET) $(LIMKEY_TARGET)
+
+$(LIMFICO_TARGET): $(LIMFICO_SRCS)
+	$(CC) -o $@ $(CFLAGS) $(LIMFICO_SRCS) -I $(HEADERS)
+
+$(LIMKEY_TARGET): $(LIMKEY_SRCS)
+	$(CC) -o $@ $(CFLAGS) $(LIMKEY_SRCS) -I $(HEADERS) $(LDLIBS)
 
 clean:
-	rm -f $(1TARGET).exe $(1TARGET)
-	rm -f $(2TARGET).exe $(2TARGET)
+	rm -f $(LIMFICO_TARGET).exe $(LIMFICO_TARGET)
+	rm -f $(LIMKEY_TARGET).exe $(LIMKEY_TARGET)

@@ -3,6 +3,19 @@
 #include <stdlib.h>
 #include <time.h>
 
+#ifdef _WIN32
+
+#include <windows.h>
+#include <bcrypt.h>
+
+
+#elif defined (__unix__)
+
+#include <sys/random.h>
+
+#endif
+
+
 int main(int argc, char *argv[]){
 
 	char userarg[255];
@@ -28,7 +41,13 @@ int main(int argc, char *argv[]){
 		}	
 		FILE* output = fopen(outputname, "wb");
 		for(long long int i = 0; i < keylength; i++){
-			unsigned char rnum = (unsigned char)(rand() % 255);
+			unsigned char rnum;
+#ifdef _WIN32
+			BCryptGenRandom(NULL, (PUCHAR)&rnum, sizeof(rnum), BCRYPT_USE_SYSTEM_PREFERRED_RNG);
+#elif defined(__unix__)
+			getrandom(&rnum, sizeof(rnum), 0);
+
+#endif
 			fwrite(&rnum, sizeof(unsigned char), 1, output);	
 		}
 		printf("Key with length [%llu] successfully created\n", keylength);
