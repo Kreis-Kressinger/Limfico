@@ -15,7 +15,7 @@ Limfico also comes bundled together with Limkey, a command line utility that can
 supported platforms:
 - Windows
 - Linux
-- (macOS: likely, but not tested)
+- (macOS: Only Limfico)
 
 prerequisites: gcc, make
 1. Clone the repo using ssh or https: 
