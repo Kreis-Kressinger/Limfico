@@ -13,8 +13,8 @@ Limfico also comes bundled together with Limkey, a command line utility that can
 
 ### Installing Limfico and Limkey:
 supported platforms:
-- Windows
-- Linux
+- Windows: Limfico and Limkey
+- Linux: Limfico and Limkey (Limkey not tested yet, but likely functioning)
 - (macOS: Only Limfico)
 
 prerequisites: gcc, make
